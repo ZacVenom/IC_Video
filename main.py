@@ -100,7 +100,7 @@ class SpringhillRansomwareVideo(Scene):
                   "Solutions and Policy"]
         title = Text("Ransomware at Springhill Medical Center", font_size=42, weight=BOLD)
         subtitle = Text("Lives Disrupted. Systems Broken. Leadership Missing.", font_size=28).next_to(title, DOWN)
-        credit = Text("--------------",font_size = 20).next_to(subtitle,DOWN)
+        credit = Text("Peter  Šafranko",font_size = 20).next_to(subtitle,DOWN)
         self.play(Write(title, shift=UP))
         self.play(Write(subtitle, shift=UP))
         self.play(Write(credit))
@@ -126,8 +126,9 @@ class SpringhillRansomwareVideo(Scene):
 
         # Scene 2: The Springhill Case - 20 seconds
         title = Text("Springhill Medical Center - 2019", font_size=44).to_edge(UP)
-        self.play(ReplacementTransform(first_title,title))
         slider = create_slider(self = self,topics = topics,current_index = 0)
+        self.play(FadeIn(slider))
+        self.play(ReplacementTransform(first_title,title))
         self.wait()
         hospital = self.draw_icon("hospital").shift(LEFT * 4)
         broken_chain = self.draw_icon("broken_chain").next_to(hospital, RIGHT* 2)
@@ -169,7 +170,7 @@ class SpringhillRansomwareVideo(Scene):
         self.play(steps.animate.shift(LEFT*2),virus_icon.animate.shift(LEFT*2))
         extra = Text("-> No guarantee",font_size=28).next_to(steps[2],RIGHT)
         self.play(Write(extra))
-        self.wait(4)
+        self.wait(6)
         self.play(FadeOut(title), FadeOut(virus_icon), FadeOut(steps),FadeOut(extra),run_time = 2)
         # Scene 4: Systemic Failures - 18
         title = Text("Systemic Failures", font_size=44).to_edge(UP)
@@ -246,7 +247,7 @@ class SpringhillRansomwareVideo(Scene):
         for i in range(4):
             self.play(Write(culture[i]))
             self.wait()
-        self.wait(30)
+        self.wait(25)
         self.play(FadeOut(title), FadeOut(globe), FadeOut(culture),run_time = 2)
 
         # Scene 8: Solutions 18
@@ -267,8 +268,9 @@ class SpringhillRansomwareVideo(Scene):
         for i in range(5):
             self.play(Write(solutions[i]))
             self.wait()
-        self.wait(9)
-        self.play(FadeOut(title), FadeOut(check), FadeOut(solutions),FadeOut(slider),run_time = 2)
+        self.wait(7)
+        self.play(FadeOut(slider))
+        self.play(FadeOut(title), FadeOut(check), FadeOut(solutions),run_time = 2)
         
         # Final Message
         final = Text("Cybersecurity is Leadership in Action", font_size=36)
@@ -284,3 +286,7 @@ class SpringhillRansomwareVideo(Scene):
         self.wait()
         self.play(Unwrite(banner),Unwrite(made_using))
         self.wait(1)
+        github = Text("The video code can be found on GitHub:\nhttps://github.com/ZacVenom/IC_Video")
+        self.play(FadeIn(github))
+        self.wait(5)
+        self.play(FadeOut(github))
